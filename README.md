@@ -5,8 +5,28 @@ Para iniciar la aplicacion utilizar los siguientes comandos
 npm i && npm run dev
 ```
 
-Para realizar los test una vez instalados los paquetes.
+Endpoints
 
 ```shell
-npm run test
+Headers: 
+'authorization' : 'authKey'
+POST /user/create 
+-
+    {
+        "email": "email@example.com",
+        "notifications": [
+            "Text #1",
+            "Text #2"
+        ]
+    }
+-
+
+POST /user/get
+-
+
+{
+    "id": "65e91ac6326679dd05e42610"
+}
+
+-
 ```
