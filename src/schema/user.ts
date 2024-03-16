@@ -3,12 +3,12 @@ import { User } from "../models/user";
 
 const userSchema = new Schema({
   
-  email: {
+  dni: {
     type: String,
     require: true
   },
-  notifications: {
-    type: Object,
+  password: {
+    type: String,
     require: true
   }
 },
