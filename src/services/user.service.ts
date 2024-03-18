@@ -44,7 +44,7 @@ export async function loginUser (req: Request, res: Response) {
         });
         return res.cookie("access_token", token, {
           httpOnly: true,
-          secure: process.env.NODE_ENV === "production",
+          
         }).status(202).json({message: "Account loggin", user: account, token});
       } else return res.status(404).json({message: "Invalid password"});
     } else return res.status(404).json({message: "Account not found", account})
