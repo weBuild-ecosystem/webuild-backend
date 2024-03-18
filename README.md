@@ -13,11 +13,16 @@ Headers:
 POST /user/create 
 -
     {
-        "email": "email@example.com",
-        "notifications": [
-            "Text #1",
-            "Text #2"
-        ]
+        "password": "exmaplepassword",
+        "dni": "848474848"
+    }
+-
+
+POST /user/login
+-
+    {
+        "dni": "848474848",
+        "password": "exmaplepassword"
     }
 -
 
