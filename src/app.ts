@@ -2,6 +2,7 @@ import createServer from "./utils/server";
 import mongoose from "mongoose"
 import { globalAuthorization } from "./middleware/auth.midd";
 import UserRouter from './controller/user.controller';
+import EntitiesRouter from './controller/entities.controller';
 
 
 const port = 3001;
@@ -13,6 +14,7 @@ mongoose.connect('mongodb+srv://canitrotbartolome:canitrotbartolome@cluster0.x5z
 });
 
 app.use("/user", globalAuthorization, UserRouter);
+app.use("/entities", globalAuthorization, EntitiesRouter);
 
 
 app.listen(port, async () => {
