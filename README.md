@@ -14,7 +14,11 @@ POST /user/create
 -
     {
         "password": "exmaplepassword",
-        "dni": "848474848"
+        "dni": "848474848",
+        "email": "email@email.com",
+        "fullname": "Full Name",
+        "phone": "+5423003",
+        "entities": ["entitie_id"],
     }
 -
 
@@ -26,12 +30,34 @@ POST /user/login
     }
 -
 
-POST /user/get
+POST /user/get // Cookies se implementan automaticamente despues de haber hecho login y no necesitas enviar nada
+-
+
+
+-
+
+POST /entities/create
 -
 
 {
-    "id": "65e91ac6326679dd05e42610"
+    "nies": ["nies"],
+    "type": 0, "0 Ayuntamiento, 1 Empresas",
+    "fullname": "Ayuntamiento asdads"
+
 }
 
+-
+
+POST /entities/get
+-
+
+{
+    "id": "identitie"
+
+}
+
+-
+
+POST /entities/getmyentities // con la misma cookie del login
 -
 ```

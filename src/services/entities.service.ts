@@ -25,11 +25,7 @@ export function createEntitie(req: Request | any, res: Response) {
 }
 export async function getEntitie( req: Request | any, res: Response ) {
   try {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    const auth = req.body?.id;
+    const auth = req._id;
     if(auth !== null){
       const response = await entitiesSchema.findOne({_id: auth});
       return res.status(202).json({ message: "Entitie found", entitie: response});

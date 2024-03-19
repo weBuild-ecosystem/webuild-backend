@@ -10,6 +10,22 @@ const userSchema = new Schema({
   password: {
     type: String,
     require: true
+  },
+  email: {
+    type: String,
+    require: true
+  },
+  fullname: {
+    type: String,
+    require: true
+  },
+  phone: {
+    type: String,
+    require: true
+  },
+  entities: {
+    type: Array,
+    require: true
   }
 },
   { timestamps: true }
