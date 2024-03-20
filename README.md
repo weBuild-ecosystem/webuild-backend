@@ -58,6 +58,32 @@ POST /entities/get
 
 -
 
-POST /entities/getmyentities // con la misma cookie del login
+POST /entities/getmyentities
+{
+    "entities": ["identitie"]
+
+}
 -
+
+POST /votations/create
+{
+    image: string;
+    title: string;
+    description: string;
+    options: string[];
+    timeStart: string;
+    timeEnd: string;
+    votes: VotesModel[],
+    from_id: string;
+
+}
+-
+
+POST /votations/get
+-
+
+{
+    "from_id": "identitie"
+
+}
 ```
