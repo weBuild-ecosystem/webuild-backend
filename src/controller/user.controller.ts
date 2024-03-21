@@ -6,10 +6,10 @@ import { authorization } from "../middleware/jwt";
 
 var router = express.Router();
 
-router.post("/create", body('dni').isEmail(), body('password'), createUser);
+router.post("/create", createUser);
 router.post("/get", authorization, getUser);
 router.post("/login",
-  body('password').isLength({ min: 5 }),
-  body('dni').isEmail(), 
+  body('password').isLength({ min: 1 }),
+  body('dni'), 
 loginUser);
 export default router;

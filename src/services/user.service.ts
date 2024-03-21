@@ -14,8 +14,9 @@ export async function createUser(req: Request | any, res: Response) {
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const body = req?.body;
-    var response = await entitiesSchema.find({ nies: {$regex: body?.nie, $options: 'i'}});
+    var body = req?.body;
+    body.password = bcrypt.hashSync(body?.password.toString(), 10);;
+    var response = await entitiesSchema.find({ nies: {$regex: body?.dni ?? '', $options: 'i'}});
     if(response !== null){
       var entities: String[] = [];
       response?.map((e) => {
@@ -35,7 +36,7 @@ export async function createUser(req: Request | any, res: Response) {
     }
     return res.status(204).json({ message: "User not registered" });
   } catch (errors) {
-    return res.status(505).json({ message: "Invalid body or error" });
+    return res.status(505).json({ message: "Invalid body or error" , errors});
   }
 }
 
@@ -46,7 +47,7 @@ export async function loginUser (req: Request, res: Response) {
       return res.status(400).json({ errors: errors.array() });
     }
     const body = req.body as Pick<User, "dni" | "password">
-    const account = await userSchema.findOne({ dni: body.dni });
+    const account = await userSchema.findOne({ dni: body?.dni ?? '' });
     if(account){
       if (bcrypt.compareSync(body.password.toString(), account.password.toString())) {
         const token = jwt.sign({ _id: account._id.toString() }, "SECRET_EXAMPLE_KEY", {
