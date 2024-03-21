@@ -7,7 +7,7 @@ import EntitiesRouter from './controller/entities.controller';
 
 const port = 3001;
 export const app = createServer();
-mongoose.connect('mongodb+srv://canitrotbartolome:canitrotbartolome@cluster0.x5zoaac.mongodb.net/jaaded?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://canitrotbartolome:canitrotbartolome@cluster0.x5zoaac.mongodb.net/webuild?retryWrites=true&w=majority',
   err => {
       if(err) throw err;
       console.log('connected to MongoDB');

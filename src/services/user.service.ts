@@ -17,7 +17,12 @@ export async function createUser(req: Request | any, res: Response) {
     const body = req?.body;
     var response = await entitiesSchema.find({ nies: {$regex: body?.nie, $options: 'i'}});
     if(response !== null){
+      var entities: String[] = [];
+      response?.map((e) => {
+        entities.push(String(e._id));
+      });
       const addingUser = new userSchema({
+        entities,
         ...body
       });
       addingUser.markModified("users");

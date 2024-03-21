@@ -12,7 +12,7 @@ export function createVotation(req: Request | any, res: Response) {
     const addingVotation = new votationSchema({
       ...body
     });
-    addingVotation.markModified("entities");
+    addingVotation.markModified("votations");
     addingVotation.save()
     if (addingVotation) {
       return res
