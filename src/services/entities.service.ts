@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { validationResult } from "express-validator";
 import entitiesSchema from "../schema/entities.schema";
+import { Entities } from "../models/entities.model";
 
 export function createEntitie(req: Request | any, res: Response) {
   try {  
@@ -45,14 +46,15 @@ export async function getMyEntities( req: Request | any, res: Response ) {
     
     const auth = req.body?.entities;
     if(auth?.length > 0){
-      var entities: String[] = [];
+      var entities: Entities[] = [];
       auth?.map(async (e) => {
-        const response = await entitiesSchema.findOne({_id: e});
+        const response: any = await entitiesSchema.findOne({_id: e});
         if(response !== null){
-          entities.push(String(response?._id));
+          entities.push(response);
         }
       })
       return res.status(202).json({ message: "Entitites found", entities});
+      
     }
     return res.status(202).json({ message: "Entitie not found"});
   } catch (error) {

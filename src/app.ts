@@ -3,6 +3,7 @@ import mongoose from "mongoose"
 import { globalAuthorization } from "./middleware/auth.midd";
 import UserRouter from './controller/user.controller';
 import EntitiesRouter from './controller/entities.controller';
+import VotationsRouter from './controller/votations.controller';
 
 
 const port = 3001;
@@ -15,6 +16,7 @@ mongoose.connect('mongodb+srv://canitrotbartolome:canitrotbartolome@cluster0.x5z
 
 app.use("/user", globalAuthorization, UserRouter);
 app.use("/entities", globalAuthorization, EntitiesRouter);
+app.use("/votations", globalAuthorization, VotationsRouter);
 
 
 app.listen(port, async () => {

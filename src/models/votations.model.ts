@@ -12,3 +12,16 @@ export interface Votations extends Document{
     votes: VotesModel[],
     from_id: string;
 }
+/*
+{
+    "image": "", 
+    "title": "¿Que tanto te gusta votar?",
+    "description": "",
+    "options": [
+        "Mucho",
+        "Poco", 
+        "Medio"
+    ],
+    "timeStart", 
+}
+*/
