@@ -46,14 +46,14 @@ export async function getMyEntities( req: Request | any, res: Response ) {
     
     const auth = req.body?.entities;
     if(auth?.length > 0){
-      var entities: Entities[] = [];
-      auth?.map(async (e) => {
-        const response: any = await entitiesSchema.findOne({_id: e});
-        if(response !== null){
-          entities.push(response);
-        }
-      })
-      return res.status(202).json({ message: "Entitites found", entities});
+      let entities: any = [];
+      var response: any;
+      for(var i =0; i<auth?.length; i++){
+        response = await entitiesSchema.findOne({_id: auth[i]});
+        entities.push(response);
+      }
+      
+      return res.status(202).json({ message: "Entitites found", entities: entities ?? []});
       
     }
     return res.status(202).json({ message: "Entitie not found"});

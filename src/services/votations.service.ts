@@ -35,3 +35,21 @@ export async function getVotations( req: Request | any, res: Response ) {
     return res.status(505).json({ message: "Invalid body or error" });
   }
 }
+
+export async function addVoteVotation( req: Request | any, res: Response ) {
+  try {
+    const auth = req.body?.id;
+    const auth2 = req.body?.from_id;
+    const votes = req.body?.vote;
+    if(auth !== null && votes !== null && auth2 !== null){
+      const response: any = await votationSchema.findOne({_id: auth});
+      const responseUpdate = await votationSchema.findOneAndUpdate({_id: auth}, {votes : [...response?.votes, {from_id: auth2, value: votes}]} )
+      console.log(responseUpdate);
+
+      if(responseUpdate) return res.status(202).json({ message: "Votation update", votation: response});
+    }
+    return res.status(202).json({ message: "Votation not update"});
+  } catch (error) {
+    return res.status(505).json({ message: "Invalid body or error" });
+  }
+}
